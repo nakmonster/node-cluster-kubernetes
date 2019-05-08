@@ -17,6 +17,10 @@ RUN npm install
 # Bundle app source
 #COPY . .
 
+ENV NODE_MASTER http://localhost:5001
+ENV NODE_SLAVE http://localhost:5002
+ENV NODE_SLAVE2 http://localhost:5003
+
 EXPOSE 5003
 
-CMD [ "npm", "start" ]
+CMD echo -e "NODE_MASTER=$NODE_MASTER\nNODE_SLAVE=$NODE_SLAVE\nNODE_SLAVE2=$NODE_SLAVE2" > .env; npm start
